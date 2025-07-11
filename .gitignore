@@ -78,8 +78,8 @@ compile_commands.json
 # QtCreator local machine specific files for imported projects
 *creator.user*
 
-# IDE files
-.vscode/
+# IDE files (keep project configuration)
+# .vscode/ - keeping for project setup
 .idea/
 *.swp
 *.swo
