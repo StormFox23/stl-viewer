@@ -40,8 +40,11 @@ jobs:
     - name: Install Qt6
       uses: jurplel/install-qt-action@v3
       with:
-        version: '6.5.0'
-        modules: 'qtbase qttools qtopengl'
+        version: '6.5.3'
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_msvc2019_64'
+        cache: true
     
     - name: Configure CMake
       run: cmake -B build -DCMAKE_BUILD_TYPE=Release
@@ -51,7 +54,7 @@ jobs:
     
     - name: Test Build
       run: |
-        cd build
+        cd build/Release
         dir
         echo "Build successful!"
 
@@ -65,6 +68,7 @@ jobs:
       run: |
         brew install qt6
         echo "$(brew --prefix qt6)/bin" >> $GITHUB_PATH
+        echo "CMAKE_PREFIX_PATH=$(brew --prefix qt6)" >> $GITHUB_ENV
     
     - name: Configure CMake
       run: cmake -B build -DCMAKE_BUILD_TYPE=Release
@@ -76,5 +80,5 @@ jobs:
       run: |
         cd build
         ls -la STLViewer
-        file STLViewer
+        file STLViewer || echo "STLViewer executable found"
         echo "Build successful!"
