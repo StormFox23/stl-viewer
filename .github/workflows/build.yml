@@ -45,6 +45,7 @@ jobs:
         target: 'desktop'
         arch: 'win64_msvc2019_64'
         cache: true
+        setup-python: 'false'
     
     - name: Configure CMake
       run: cmake -B build -DCMAKE_BUILD_TYPE=Release
@@ -54,9 +55,17 @@ jobs:
     
     - name: Test Build
       run: |
-        cd build/Release
-        dir
-        echo "Build successful!"
+        if (Test-Path "build/Release/STLViewer.exe") {
+          Write-Host "STLViewer.exe found in build/Release/"
+          Get-ChildItem build/Release/STLViewer.exe
+        } elseif (Test-Path "build/STLViewer.exe") {
+          Write-Host "STLViewer.exe found in build/"
+          Get-ChildItem build/STLViewer.exe
+        } else {
+          Write-Host "Searching for STLViewer.exe..."
+          Get-ChildItem -Recurse -Name "STLViewer.exe" build/
+        }
+        Write-Host "Build successful!"
 
   build-macos:
     runs-on: macos-latest
