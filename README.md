@@ -135,4 +135,12 @@ The `examples/` directory contains sample STL files for testing:
 
 ## License
 
-This project is provided as-is for educational and demonstration purposes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Screenshots
+
+*Screenshots will be added once the application is running in a graphical environment.*
